@@ -9,16 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    
+
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
-    
+
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepo.save(user);
     }
-
-//    public User loginUser(User user) {
-//        return null;
-//    }
 }
