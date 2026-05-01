@@ -1,5 +1,6 @@
 package com.hope.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hope.enums.UserRoles;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,13 +14,16 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique = true, nullable = false)
+
+    @Column(nullable = false)
     private String username;
 
+    @Enumerated(EnumType.STRING)
     private UserRoles userRoles;
 
     private String password;
@@ -35,26 +39,31 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public String getUsername() {
         return username;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }
