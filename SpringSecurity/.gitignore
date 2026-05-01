@@ -34,5 +34,3 @@ build/
 
 ### Credentials ###
 src/main/resources/application-dev.properties
-
-../.DS_Store
